@@ -18,6 +18,9 @@ export class Coffee {
   @Column()
   brand: string;
 
+  @Column({ default: 0 })
+  recommendations: number;
+
   @JoinTable() // 👈 Join the 2 tables - `coffees` and `flavors`
   @ManyToMany(
     (type) => Flavor, // 👈 inverse side (can be omitted)
