@@ -6,10 +6,6 @@ import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity';
 import { Event } from 'src/events/entities/event.entity/event.entity';
 
-class ConfigService {}
-class DevelopmentConfigService {}
-class ProductionConfigService {}
-
 @Module({
   imports: [TypeOrmModule.forFeature([Coffee, Flavor, Event])],
   controllers: [CoffeesController],
@@ -17,11 +13,8 @@ class ProductionConfigService {}
   providers: [
     CoffeesService,
     {
-      provide: ConfigService,
-      useClass:
-        process.env.NODE_ENV === 'development'
-          ? DevelopmentConfigService
-          : ProductionConfigService,
+      provide: 'COFFEE_BRANDS',
+      useFactory: () => ['buddy brew', 'nescafe'],
     },
   ],
   exports: [CoffeesService],
