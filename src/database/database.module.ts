@@ -20,7 +20,8 @@ export class DatabaseModule {
       providers: [
         {
           provide: 'CONNECTION',
-          useValue: new DataSource(options).initialize(),
+          // useValue: new DataSource(options).initialize(),
+          useValue: new DataSource(options),
         },
       ],
     };
